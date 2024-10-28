@@ -16,13 +16,12 @@ def move_files(source_dir, dest_dir, file_extension):
                 dest_file = os.path.join(dest_dir, filename)
                 
                 # Handle duplicates
-                duplicate_count = 1
-                while os.path.exists(dest_file):
-                    duplicate_dir = os.path.join(dest_dir, f'duplicates_{duplicate_count}')
-                    if not os.path.exists(duplicate_dir):
-                        os.makedirs(duplicate_dir)
-                    dest_file = os.path.join(duplicate_dir, filename)
-                    duplicate_count += 1
+                if os.path.exists(dest_file):
+                    name, ext = os.path.splitext(filename)
+                    counter = 1
+                    while os.path.exists(dest_file):
+                        dest_file = os.path.join(dest_dir, f'{name}({counter}){ext}')
+                        counter += 1
                 
                 # Move the file
                 shutil.move(source_file, dest_file)
