@@ -10,7 +10,7 @@ def convert_ppt_to_pdf(ppt_path, pdf_path):
         pythoncom.CoInitialize()  # Initialize COM library in this thread
         print(f"Converting {ppt_path} to {pdf_path}")
         powerpoint = comtypes.client.CreateObject("Powerpoint.Application")
-        powerpoint.Visible = 0  # Make PowerPoint visible
+        powerpoint.Visible = 1  # Make PowerPoint visible
         powerpoint.DisplayAlerts = False  # Disable alerts
         deck = powerpoint.Presentations.Open(ppt_path)
         deck.SaveAs(pdf_path, 32)  # 32 is the formatType for pdf
