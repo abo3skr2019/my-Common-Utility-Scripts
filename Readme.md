@@ -6,6 +6,7 @@ Each script performs a specific task such as deleting duplicates, sorting files 
 ## Scripts
 
 ### 1. duplicate-deleter
+
 This script finds and handles duplicate files in a given directory.
 
 - **Functions:**
@@ -15,18 +16,22 @@ This script finds and handles duplicate files in a given directory.
   - `main()`: Main function to execute the script.
 
 ### 2. emptyfolder-Deleter
+
 This script deletes empty folders in a given directory.
 
 ### 3. Extenstion-Sorter
+
 This script sorts files based on their extensions and moves them to specified directories.
 
 - **Functions:**
   - `move_files(source_dir, dest_dir, file_extension)`: Moves files with a specific extension from the source directory to the destination directory.
 
 ### 4. Folder-Sorter
+
 This script groups files based on name similarity and moves them to grouped directories.
 
 ### 5. hrefParser
+
 This script extracts and saves href links from HTML files.
 
 - **Functions:**
@@ -34,10 +39,15 @@ This script extracts and saves href links from HTML files.
   - `save_hrefs_to_file(hrefs, output_file)`: Saves extracted href links to a file.
 
 ### 6. Prefix-Matcher
+
 This script organizes files by their prefixes and moves them to respective directories.
 
 - **Functions:**
   - `organize_files_by_prefix(exclude_dirs=None)`: Organizes files by their prefixes, excluding specified directories.
+
+### 7.PDFConverter
+
+This Script Converts Office 365 Formats into PDFs
 
 ## Usage
 
