@@ -2,12 +2,14 @@ import os
 import sys
 import ffmpeg
 import logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S',filename='wav-to-flac.log', filemode='w')
-def convert_wav_to_flac(wav_file):
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S', filename='wav-to-flac.log', filemode='w')
+
+def convert_wav_to_flac(wav_file, overwrite=False):
     flac_file = wav_file.replace('.wav', '.flac')
     try:
         # Convert WAV to FLAC with metadata preservation
-        ffmpeg.input(wav_file).output(flac_file, map_metadata=0).run()
+        ffmpeg.input(wav_file).output(flac_file, map_metadata=0).run(overwrite_output=overwrite)
 
         # Check if the FLAC file was created successfully
         if os.path.exists(flac_file):
@@ -26,22 +28,24 @@ def convert_wav_to_flac(wav_file):
     except Exception as e:
         logging.error(f"An unexpected error occurred: {e}")
 
-def convert_all_wav_in_directory(directory):
+def convert_all_wav_in_directory(directory, overwrite=False):
     for root, _, files in os.walk(directory):
         for file in files:
             if file.endswith('.wav'):
                 wav_file = os.path.join(root, file)
-                convert_wav_to_flac(wav_file)
+                convert_wav_to_flac(wav_file, overwrite)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python wav-to-flac.py <path_to_directory>")
+    if len(sys.argv) < 2 or len(sys.argv) > 3:
+        print("Usage: python wav-to-flac.py <path_to_directory> [-y]")
         sys.exit(1)
 
     directory = sys.argv[1]
+    overwrite = '-y' in sys.argv
+
     if not os.path.isdir(directory):
         logging.error(f"The directory {directory} does not exist.")
         print(f"The directory {directory} does not exist.")
         sys.exit(1)
 
-    convert_all_wav_in_directory(directory)
+    convert_all_wav_in_directory(directory, overwrite)
