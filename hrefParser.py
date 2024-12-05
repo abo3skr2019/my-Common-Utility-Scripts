@@ -1,3 +1,4 @@
+# make sure to change starts with in the extract_hrefs function to match the hrefs you want to extract
 from bs4 import BeautifulSoup
 
 def extract_hrefs(file_path):
@@ -5,7 +6,7 @@ def extract_hrefs(file_path):
         content = file.read()
     
     soup = BeautifulSoup(content, 'html.parser')
-    hrefs = [a['href'] for a in soup.find_all('a', href=True) if a['href'].startswith('https://cdn.humble.com')]
+    hrefs = {a['href'] for a in soup.find_all('a', href=True) if a['href'].startswith('https://')}
     
     return hrefs
 
@@ -15,7 +16,7 @@ def save_hrefs_to_file(hrefs, output_file):
             file.write(f"{href}\n")
 
 # Example usage
-file_path = 'asd.html'
+file_path = 'input.html'
 output_file = 'hrefs.txt'
 hrefs = extract_hrefs(file_path)
 save_hrefs_to_file(hrefs, output_file)
