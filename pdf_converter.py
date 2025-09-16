@@ -4,7 +4,7 @@ from docx2pdf import convert as docx_convert
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import pythoncom
-
+import argparse
 def convert_ppt_to_pdf(ppt_path, pdf_path):
     try:
         pythoncom.CoInitialize()  # Initialize COM library in this thread
@@ -90,7 +90,11 @@ def convert_and_move(file_path, pdf_path, new_directory, file_type):
                 move_file(file_path, new_directory)
 
 def main():
-    current_directory = os.getcwd()
+    parser = argparse.ArgumentParser(description='Convert PPT/DOC files to PDF.')
+    parser.add_argument("directory",
+                        help='Directory to search for files')
+    args = parser.parse_args()
+    current_directory = args.directory
     ppt_dir = os.path.join(current_directory, 'PPT')
     doc_dir = os.path.join(current_directory, 'DOC')
     file_list = []

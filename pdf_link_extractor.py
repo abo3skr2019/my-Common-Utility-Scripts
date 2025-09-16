@@ -17,8 +17,7 @@ def extract_links_from_pdf(pdf_path):
                 links.append(link['uri'])
 
     return links
-
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="Extract links from a PDF file.")
     parser.add_argument('-i', '--input', required=True, help="Input PDF file path")
     parser.add_argument('-o', '--output', required=True, help="Output text file path")
@@ -34,3 +33,6 @@ if __name__ == "__main__":
     with open(output_path, 'w') as f:
         for link in links:
             f.write(link + '\n')
+
+if __name__ == "__main__":
+    main()

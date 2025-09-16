@@ -1,3 +1,4 @@
+import argparse
 import os
 import shutil
 import re
@@ -45,8 +46,13 @@ def organize_files_by_prefix(exclude_dirs=None):
         for file in files:
             dest_path = os.path.join(dest_dir, os.path.basename(file))
             shutil.move(file, dest_path)
-
-if __name__ == "__main__":
-    # Example usage with exclusion directories
-    exclude_dirs = [os.path.join(os.getcwd(), 'Herolab-Files')]
+def main():
+    parser = argparse.ArgumentParser(description='Organize files by prefix.')
+    parser.add_argument('-e', '--exclude', nargs='*', default=[], 
+                        help='Directories to exclude from processing')
+    args = parser.parse_args()
+    
+    exclude_dirs = [os.path.abspath(d) for d in args.exclude]
     organize_files_by_prefix(exclude_dirs)
+if __name__ == "__main__":
+    main()

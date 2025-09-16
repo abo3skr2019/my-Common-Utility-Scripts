@@ -11,7 +11,9 @@ def move_empty_directories(root_dir):
         if os.path.isdir(subdir_path) and not os.listdir(subdir_path):
             shutil.move(subdir_path, empty_dir)
             print(f"Moved empty directory: {subdir_path}")
-
-if __name__ == "__main__":
+def main():
     root_directory = os.getcwd()
     move_empty_directories(root_directory)
+    print("Done moving empty directories.")
+if __name__ == "__main__":
+    main()
