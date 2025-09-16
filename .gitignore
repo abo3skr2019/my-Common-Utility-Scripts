@@ -2,3 +2,13 @@
 /input
 *.html
 *.txt
+build/
+*.log
+dist/
+*.egg-info/
+__pycache__/
+*.pyc
+.env
+.venv
+env/
+venv/
