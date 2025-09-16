@@ -49,6 +49,11 @@ This script organizes files by their prefixes and moves them to respective direc
 
 This Script Converts Office 365 Formats into PDFs
 
+### 8.Concatenate
+- Concatenate-all-Markdown -- which concats text files
+- Concatenate-all-mkv -- which concats video files
+
+whilst they say mkv and markdown it is a simple edit of the code to make them do other file extensions
 ## Usage
 
 Each script can be executed independently. For example, to run the `duplicate-deleter` script, use the following command:
